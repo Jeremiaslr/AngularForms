@@ -1,16 +1,17 @@
 <h2>Reactives: <small> Dynamics </small></h2>
 <hr>
 
-<form autocomplete="off">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
     <!-- Name -->
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Name</label>
         <div class="col-sm-9">
             <input class="form-control"
+                    formControlName="name"
                    placeholder="Person's name">
-            <span class="form-text text-danger">
-                   error message
+            <span *ngIf="isValidField('name')" class="form-text text-danger">
+                   {{ getFieldError('name') }}
             </span>
         </div>
     </div>
@@ -37,20 +38,20 @@
     <!-- List of Favorite Games -->
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Favorites</label>
-        <div class="col-sm-9">
+        <div class="col-sm-9" formArrayName="favoriteGames">
 
-            <div class="mb-1">
+            <div class="mb-1" *ngFor="let favorite of favoriteGames.controls; let i = index">
 
                 <div class="input-group">
-                    <input class="form-control">
+                    <input [formControlName]="i" class="form-control">
 
                     <button class="btn btn-outline-danger"
                             type="button">
                       Delete
                   </button>
                 </div>
-                <span class="form-text text-danger">
-                   This field is required
+                <span *ngIf="isValidFieldInArray(favoriteGames, i)" class="form-text text-danger">
+                  This field is required
                 </span>
 
             </div>
