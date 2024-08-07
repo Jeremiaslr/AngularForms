@@ -15,7 +15,7 @@
                            formControlName="name"
                            placeholder="User's name">
 
-                    <span class="form-text text-danger">
+                    <span *ngIf="isValidField('name')" class="form-text text-danger">
                         Must be in first name and last name format
                     </span>
                 </div>
@@ -29,7 +29,7 @@
                            class="form-control"
                            formControlName="email"
                            placeholder="User's email">
-                    <span class="form-text text-danger">
+                    <span *ngIf="isValidField('email')" class="form-text text-danger">
                         email error message
                     </span>
                 </div>
@@ -43,7 +43,7 @@
                            class="form-control"
                            formControlName="username"
                            placeholder="User's code name">
-                    <span class="form-text text-danger">
+                    <span *ngIf="isValidField('username')" class="form-text text-danger">
                           The username cannot be Strider
                     </span>
                 </div>
@@ -58,7 +58,7 @@
                            formControlName="password"
                            placeholder="Account password">
 
-                    <span class="form-text text-danger">
+                    <span *ngIf="isValidField('password')" class="form-text text-danger">
                           The password must be longer than 6 characters
                     </span>
                 </div>
@@ -73,7 +73,7 @@
                            formControlName="password2"
                            placeholder="Confirm the password">
 
-                    <span class="form-text text-danger">
+                    <span *ngIf="isValidField('password2')" class="form-text text-danger">
                           The passwords must match
                     </span>
                 </div>
